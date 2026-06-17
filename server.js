@@ -268,7 +268,8 @@ function setupEvents() {
           .setAuthor({ name: member.user.tag, iconURL: avatarUrl })
           .setDescription(`منور/ه ${member}`)
           .addFields(
-            { name: 'الاخبار', value: '<#1477426333779886202>' },
+            { name: 'الاخبار', value: '<#1477426333779886202>' }
+          )
           .setImage(avatarUrl)
           .setFooter({ text: `عضو رقم ${member.guild.memberCount}` })
           .setTimestamp();
