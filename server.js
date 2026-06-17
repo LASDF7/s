@@ -135,6 +135,7 @@ https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=8&
   registerCommand('announce', ['اعلان', 'ann'], { category: 'ادارة', description: 'إرسال إعلان', execute(message, args) { if (!isAdmin(message.member)) return message.reply('للأدمن فقط!'); const channel = message.mentions.channels.first() || message.channel; const text = args.join(' ').replace(/<<#\d+>/, '').trim(); if (!text) return message.reply('اكتب نص الإعلان!'); channel.send({ embeds: [{ color: 0x808080, title: 'إعلان', description: text, footer: { text: `بواسطة ${message.author.username}` }, timestamp: new Date() }] }); message.delete().catch(() => {}); } });
   registerCommand('تكت', ['تذكرة', 'tk'], { category: 'ادارة', description: 'رسالة التكت', execute(message) { if (!isModerator(message.member)) return message.reply('للإدارة فقط!'); const embed = new EmbedBuilder().setColor(0x808080).setTitle('فتح تذكرة').setDescription('اختر نوع التذكرة:\n\n1. تفتح تكت وتستهبل = تايم 10 دقايق\n2. تفتح تكت وما ترد = يتقفل\n3. أسلوبك سيء = تايم 10 دقايق\n4. يرجى فتح تذكرة بسبب واضح').setFooter({ text: 'التذاكر للتواصل مع الإدارة فقط' }).setImage('https://cdn.discordapp.com/attachments/1461825102176849990/1516927147707600967/image.png?ex=6a346bff&is=6a331a7f&hm=c0e4e571aa88a54744e287f363713de0ee8a02922b04103968d6055b1ab5231a'); const selectRow = new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId('ticket_type').setPlaceholder('اختر نوع التكت').addOptions(new StringSelectMenuOptionBuilder().setLabel('استفسار').setValue('inquiry').setDescription('سؤال عام'), new StringSelectMenuOptionBuilder().setLabel('Open Ticket').setValue('open_ticket').setDescription('تذكرة عامة'), new StringSelectMenuOptionBuilder().setLabel('شكوى على عضو').setValue('member_report').setDescription('شكوى'))); message.channel.send({ embeds: [embed], components: [selectRow] }); } });
   registerCommand('join', ['دخل', 'صوت'], { category: 'عام', description: 'يدخل البوت الروم الصوتي 24/7 مع مايك شغال وميوت مفصول', execute(message) {
+    
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel) return message.reply('❌ ادخل روم صوتي الأول!');
     
@@ -267,9 +268,7 @@ function setupEvents() {
           .setAuthor({ name: member.user.tag, iconURL: avatarUrl })
           .setDescription(`منور/ه ${member}`)
           .addFields(
-            { name: 'الاخبار', value: '<#1502422290896523334>' },
-            { name: 'تحقق', value: '<#1502440141992755283>' }
-          )
+            { name: 'الاخبار', value: '<#1477426333779886202>' },
           .setImage(avatarUrl)
           .setFooter({ text: `عضو رقم ${member.guild.memberCount}` })
           .setTimestamp();
